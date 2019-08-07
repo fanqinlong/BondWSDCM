@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibond.common.daoExtend.DBBasicIssuerDao">
+    <resultMap id="BaseResultMap" type="com.ibond.dcm.entity.Issuer">
+        <id column="COMP_ID" property="id" jdbcType="VARCHAR"/>
+        <result column="COMP_SNAME" property="name" jdbcType="VARCHAR"/>
+        <result column="COMP_NAME" property="fullName" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        COMP_ID, COMP_SNAME, COMP_NAME
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from BASIC_ISSUER
+        where ID = #{id,jdbcType=DECIMAL}
+    </select>
+</mapper>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibond.common.daoExtend.DBBasicOrganizationDao">
+    <select id="listOrganization" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List"/>
+        from BASIC_ORGANIZATION
+        where 1=1
+        <if test="term != null and term != ''">
+            and (upper(ORG_NAME) like concat('%' , upper(#{term}) , '%') or upper(ORG_FULL_NAME) like concat('%' , upper(#{term}) , '%'))
+        </if>
+        limit 50
+    </select>
+</mapper>

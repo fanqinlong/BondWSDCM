@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+		"http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+
+	<classPathEntry
+			location="/Users/simon/.m2/repository/mysql/mysql-connector-java/5.1.30/mysql-connector-java-5.1.30.jar"/>
+
+	<context id="DB2Tables" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<property name="suppressDate" value="true"/>
+			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+			<property name="suppressAllComments" value="true"/>
+		</commentGenerator>
+		<!--数据库链接URL，用户名、密码 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+						connectionURL="jdbc:mysql://47.96.0.202/bondws" userId="user_sale"
+						password="Root123!@#">
+		</jdbcConnection>
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false"/>
+		</javaTypeResolver>
+		<!-- 生成模型的包名和位置,与现有模型包名位置一致 -->
+
+		<!-- 生成模型的包名和位置,与现有模型包名位置一致 -->
+		<javaModelGenerator targetPackage="com.ibond.dcm.entity"
+							targetProject="src/main/java">
+			<property name="enableSubPackages" value="true"/>
+			<property name="trimStrings" value="true"/>
+		</javaModelGenerator>
+		<!-- 生成映射文件的包名和位置，与Mapper.java位置一致 -->
+		<sqlMapGenerator targetPackage="mybatis.dcm.mapper"
+						 targetProject="src/main/resources">
+			<property name="enableSubPackages" value="true"/>
+		</sqlMapGenerator>
+		<!-- 生成DAO的包名和位置, 如果是已经存在的Mapper.java,可以不用重新生成 -->
+		<javaClientGenerator type="XMLMAPPER"
+							 targetPackage="com.ibond.dcm.dao" targetProject="src/main/java">
+			<property name="enableSubPackages" value="true"/>
+		</javaClientGenerator>
+
+
+		<!-- 要生成哪些表 -->
+		<table tableName="dcm_book_schedule" domainObjectName="DCMBookSchedule" enableInsert="true"
+			   enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableDeleteByPrimaryKey="true"
+			   enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+			   enableSelectByExample="false" selectByExampleQueryId="false">
+			<!--- 默认为false，如果设置为true，在生成的SQL中，table名字不会加上catalog或schema； -->
+			<property name="ignoreQualifiersAtRuntime" value="true"/>
+		</table>
+
+	</context>
+</generatorConfiguration>

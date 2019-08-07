@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ibond.dcm.daoExtend.DBDCMBookScheduleDao">
+  <resultMap id="BaseResultMap" type="com.ibond.dcm.entity.DCMBookSchedule">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="BOND_NAME" jdbcType="VARCHAR" property="bondName" />
+    <result column="RECORD_DAY" jdbcType="VARCHAR" property="recordDay" />
+    <result column="POLICY_DAY" jdbcType="VARCHAR" property="policyDay" />
+    <result column="PUBLISH_DAY" jdbcType="VARCHAR" property="publishDay" />
+    <result column="BOOK_DAY" jdbcType="VARCHAR" property="bookDay" />
+    <result column="PAYMENT_DAY" jdbcType="VARCHAR" property="paymentDay" />
+    <result column="OUTSTANDING_DAY" jdbcType="VARCHAR" property="outstandingDay" />
+    <result column="ISSUE_PERSON_ID" jdbcType="VARCHAR" property="issuePersonId" />
+    <result column="ISSUE_PERSON_NAME" jdbcType="VARCHAR" property="issuePersonName" />
+    <result column="DCM_PERSON_ID" jdbcType="VARCHAR" property="dcmPersonId" />
+    <result column="DCM_PERSON_NAME" jdbcType="VARCHAR" property="dcmPersonName" />
+    <result column="SALE_PERSON_ID" jdbcType="VARCHAR" property="salePersonId" />
+    <result column="SALE_PERSON_NAME" jdbcType="VARCHAR" property="salePersonName" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="DELETED" jdbcType="DECIMAL" property="deleted" />
+    <result column="CREATOR_ID" jdbcType="DECIMAL" property="creatorId" />
+    <result column="CREATOR_NAME" jdbcType="VARCHAR" property="creatorName" />
+    <result column="CREATED" jdbcType="TIMESTAMP" property="created" />
+    <result column="MODIFIER_ID" jdbcType="DECIMAL" property="modifierId" />
+    <result column="MODIFIER_NAME" jdbcType="VARCHAR" property="modifierName" />
+    <result column="MODIFIED" jdbcType="TIMESTAMP" property="modified" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, BOND_NAME, RECORD_DAY, POLICY_DAY, PUBLISH_DAY, BOOK_DAY, PAYMENT_DAY, OUTSTANDING_DAY,
+    ISSUE_PERSON_ID, ISSUE_PERSON_NAME, DCM_PERSON_ID, DCM_PERSON_NAME, SALE_PERSON_ID, 
+    SALE_PERSON_NAME, REMARK, DELETED, CREATOR_ID, CREATOR_NAME, CREATED, MODIFIER_ID, 
+    MODIFIER_NAME, MODIFIED
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dcm_book_schedule
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from dcm_book_schedule
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.ibond.dcm.entity.DCMBookSchedule">
+    insert into dcm_book_schedule (ID, BOND_NAME,
+      RECORD_DAY, POLICY_DAY, PUBLISH_DAY, 
+      BOOK_DAY, PAYMENT_DAY, OUTSTANDING_DAY, ISSUE_PERSON_ID,
+      ISSUE_PERSON_NAME, DCM_PERSON_ID, DCM_PERSON_NAME, 
+      SALE_PERSON_ID, SALE_PERSON_NAME, REMARK, 
+      DELETED, CREATOR_ID, CREATOR_NAME, 
+      CREATED, MODIFIER_ID, MODIFIER_NAME, 
+      MODIFIED)
+    values (#{id,jdbcType=DECIMAL}, #{bondName,jdbcType=VARCHAR},
+      #{recordDay,jdbcType=VARCHAR}, #{policyDay,jdbcType=VARCHAR}, #{publishDay,jdbcType=VARCHAR}, 
+      #{bookDay,jdbcType=VARCHAR}, #{paymentDay,jdbcType=VARCHAR}, #{outstandingDay,jdbcType=VARCHAR}, #{issuePersonId,jdbcType=VARCHAR},
+      #{issuePersonName,jdbcType=VARCHAR}, #{dcmPersonId,jdbcType=VARCHAR}, #{dcmPersonName,jdbcType=VARCHAR}, 
+      #{salePersonId,jdbcType=VARCHAR}, #{salePersonName,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{deleted,jdbcType=DECIMAL}, #{creatorId,jdbcType=DECIMAL}, #{creatorName,jdbcType=VARCHAR}, 
+      #{created,jdbcType=TIMESTAMP}, #{modifierId,jdbcType=DECIMAL}, #{modifierName,jdbcType=VARCHAR}, 
+      #{modified,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ibond.dcm.entity.DCMBookSchedule">
+    insert into dcm_book_schedule
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="bondName != null">
+        BOND_NAME,
+      </if>
+      <if test="recordDay != null">
+        RECORD_DAY,
+      </if>
+      <if test="policyDay != null">
+        POLICY_DAY,
+      </if>
+      <if test="publishDay != null">
+        PUBLISH_DAY,
+      </if>
+      <if test="bookDay != null">
+        BOOK_DAY,
+      </if>
+      <if test="paymentDay != null">
+        PAYMENT_DAY,
+      </if>
+      <if test="outstandingDay != null">
+        OUTSTANDING_DAY,
+      </if>
+      <if test="issuePersonId != null">
+        ISSUE_PERSON_ID,
+      </if>
+      <if test="issuePersonName != null">
+        ISSUE_PERSON_NAME,
+      </if>
+      <if test="dcmPersonId != null">
+        DCM_PERSON_ID,
+      </if>
+      <if test="dcmPersonName != null">
+        DCM_PERSON_NAME,
+      </if>
+      <if test="salePersonId != null">
+        SALE_PERSON_ID,
+      </if>
+      <if test="salePersonName != null">
+        SALE_PERSON_NAME,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="deleted != null">
+        DELETED,
+      </if>
+      <if test="creatorId != null">
+        CREATOR_ID,
+      </if>
+      <if test="creatorName != null">
+        CREATOR_NAME,
+      </if>
+      <if test="created != null">
+        CREATED,
+      </if>
+      <if test="modifierId != null">
+        MODIFIER_ID,
+      </if>
+      <if test="modifierName != null">
+        MODIFIER_NAME,
+      </if>
+      <if test="modified != null">
+        MODIFIED,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="bondName != null">
+        #{bondName,jdbcType=VARCHAR},
+      </if>
+      <if test="recordDay != null">
+        #{recordDay,jdbcType=VARCHAR},
+      </if>
+      <if test="policyDay != null">
+        #{policyDay,jdbcType=VARCHAR},
+      </if>
+      <if test="publishDay != null">
+        #{publishDay,jdbcType=VARCHAR},
+      </if>
+      <if test="bookDay != null">
+        #{bookDay,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentDay != null">
+        #{paymentDay,jdbcType=VARCHAR},
+      </if>
+      <if test="outstandingDay != null">
+        #{outstandingDay,jdbcType=VARCHAR},
+      </if>
+      <if test="issuePersonId != null">
+        #{issuePersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="issuePersonName != null">
+        #{issuePersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="dcmPersonId != null">
+        #{dcmPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="dcmPersonName != null">
+        #{dcmPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="salePersonId != null">
+        #{salePersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="salePersonName != null">
+        #{salePersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=DECIMAL},
+      </if>
+      <if test="creatorId != null">
+        #{creatorId,jdbcType=DECIMAL},
+      </if>
+      <if test="creatorName != null">
+        #{creatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifierId != null">
+        #{modifierId,jdbcType=DECIMAL},
+      </if>
+      <if test="modifierName != null">
+        #{modifierName,jdbcType=VARCHAR},
+      </if>
+      <if test="modified != null">
+        #{modified,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ibond.dcm.entity.DCMBookSchedule">
+    update dcm_book_schedule
+    <set>
+      <if test="bondName != null">
+        BOND_NAME = #{bondName,jdbcType=VARCHAR},
+      </if>
+      <if test="recordDay != null">
+        RECORD_DAY = #{recordDay,jdbcType=VARCHAR},
+      </if>
+      <if test="policyDay != null">
+        POLICY_DAY = #{policyDay,jdbcType=VARCHAR},
+      </if>
+      <if test="publishDay != null">
+        PUBLISH_DAY = #{publishDay,jdbcType=VARCHAR},
+      </if>
+      <if test="bookDay != null">
+        BOOK_DAY = #{bookDay,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentDay != null">
+        PAYMENT_DAY = #{paymentDay,jdbcType=VARCHAR},
+      </if>
+      <if test="outstandingDay != null">
+        OUTSTANDING_DAY = #{outstandingDay,jdbcType=VARCHAR},
+      </if>
+      <if test="issuePersonId != null">
+        ISSUE_PERSON_ID = #{issuePersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="issuePersonName != null">
+        ISSUE_PERSON_NAME = #{issuePersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="dcmPersonId != null">
+        DCM_PERSON_ID = #{dcmPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="dcmPersonName != null">
+        DCM_PERSON_NAME = #{dcmPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="salePersonId != null">
+        SALE_PERSON_ID = #{salePersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="salePersonName != null">
+        SALE_PERSON_NAME = #{salePersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null">
+        DELETED = #{deleted,jdbcType=DECIMAL},
+      </if>
+      <if test="creatorId != null">
+        CREATOR_ID = #{creatorId,jdbcType=DECIMAL},
+      </if>
+      <if test="creatorName != null">
+        CREATOR_NAME = #{creatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null">
+        CREATED = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifierId != null">
+        MODIFIER_ID = #{modifierId,jdbcType=DECIMAL},
+      </if>
+      <if test="modifierName != null">
+        MODIFIER_NAME = #{modifierName,jdbcType=VARCHAR},
+      </if>
+      <if test="modified != null">
+        MODIFIED = #{modified,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ibond.dcm.entity.DCMBookSchedule">
+    update dcm_book_schedule
+    set BOND_NAME = #{bondName,jdbcType=VARCHAR},
+      RECORD_DAY = #{recordDay,jdbcType=VARCHAR},
+      POLICY_DAY = #{policyDay,jdbcType=VARCHAR},
+      PUBLISH_DAY = #{publishDay,jdbcType=VARCHAR},
+      BOOK_DAY = #{bookDay,jdbcType=VARCHAR},
+      PAYMENT_DAY = #{paymentDay,jdbcType=VARCHAR},
+      OUTSTANDING_DAY = #{outstandingDay,jdbcType=VARCHAR},
+      ISSUE_PERSON_ID = #{issuePersonId,jdbcType=VARCHAR},
+      ISSUE_PERSON_NAME = #{issuePersonName,jdbcType=VARCHAR},
+      DCM_PERSON_ID = #{dcmPersonId,jdbcType=VARCHAR},
+      DCM_PERSON_NAME = #{dcmPersonName,jdbcType=VARCHAR},
+      SALE_PERSON_ID = #{salePersonId,jdbcType=VARCHAR},
+      SALE_PERSON_NAME = #{salePersonName,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      DELETED = #{deleted,jdbcType=DECIMAL},
+      CREATOR_ID = #{creatorId,jdbcType=DECIMAL},
+      CREATOR_NAME = #{creatorName,jdbcType=VARCHAR},
+      CREATED = #{created,jdbcType=TIMESTAMP},
+      MODIFIER_ID = #{modifierId,jdbcType=DECIMAL},
+      MODIFIER_NAME = #{modifierName,jdbcType=VARCHAR},
+      MODIFIED = #{modified,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>
